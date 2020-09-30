@@ -15,7 +15,6 @@ namespace backtrack_carrier_designation.Controllers
         [HttpGet()] //api/CarrierDesignation
         public IActionResult GetDetailsAsync()
         {
-
             List<CarrierModel> carriers = new List<CarrierModel>();
             carriers = DataAccess.DB.GetCarriers();
             foreach (var carrier in carriers)

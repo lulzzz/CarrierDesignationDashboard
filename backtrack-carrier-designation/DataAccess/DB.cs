@@ -12,6 +12,51 @@ namespace backtrack_carrier_designation.DataAccess
     {
         private static string DECOSQL = "Data Source=decosql;Persist Security Info=True;";
 
+        public static List<CarrierModel> GetCarriers()
+        {
+            List<CarrierModel> carriers = new List<CarrierModel>();
+            string _err = string.Empty;
+            string sql = "SELECT [ptrfid],[ptdatetime] FROM [ptMagnaGA].[dbo].[ptPaintReads] where [ptstation] = 'DoorSeven1' and ptdatetime >= dateadd(minute, -120, getdate()) order by ptdatetime desc";
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(DECOSQL))
+                {
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        cmd.Connection = conn;
+                        conn.Open();
+
+                        SqlDataReader reader = cmd.ExecuteReader();
+                        if (reader.HasRows)
+                        {
+                            while (reader.Read())
+                            {
+                                var rfid = reader.GetString(reader.GetOrdinal("ptrfid"));
+                                CarrierModel carrier = new CarrierModel();
+                                carrier = GetCarrierData(rfid);
+                                if (carrier.CarrierNumber != 0)
+                                {
+                                    carrier.RFID = rfid;
+                                    carrier.TimeScanned = reader.GetDateTime(reader.GetOrdinal("ptdatetime"));
+                                    carriers.Add(carrier);
+                                }
+                            }
+                        }
+
+                        reader.Close();
+                        conn.Close();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                _err = ex.Message;
+            }
+
+            return (carriers);
+        }
+
         public static CarrierModel GetCarrierData(string rfid)
         {
             string _err = string.Empty;
@@ -58,49 +103,5 @@ namespace backtrack_carrier_designation.DataAccess
 
 
 
-        public static List<CarrierModel> GetCarriers()
-        {
-            List<CarrierModel> carriers = new List<CarrierModel>();
-            string _err = string.Empty;
-            string sql = "SELECT [ptrfid],[ptdatetime] FROM [ptMagnaGA].[dbo].[ptPaintReads] where [ptstation] = 'DoorSeven1' and ptdatetime >= dateadd(minute, -120, getdate()) order by ptdatetime desc";
-            
-            try
-            {
-                using (SqlConnection conn = new SqlConnection(DECOSQL))
-                {
-                    using (SqlCommand cmd = new SqlCommand(sql, conn))
-                    {
-                        cmd.Connection = conn;
-                        conn.Open();
-
-                        SqlDataReader reader = cmd.ExecuteReader();
-                        if (reader.HasRows)
-                        {
-                            while (reader.Read())
-                            {                               
-                                var rfid = reader.GetString(reader.GetOrdinal("ptrfid"));
-                                CarrierModel carrier = new CarrierModel();
-                                carrier = GetCarrierData(rfid);
-                                if (carrier.CarrierNumber != 0)
-                                {
-                                    carrier.RFID = rfid;
-                                    carrier.TimeScanned = reader.GetDateTime(reader.GetOrdinal("ptdatetime"));
-                                    carriers.Add(carrier);
-                                }
-                            }
-                        }
-
-                        reader.Close();
-                        conn.Close();
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                _err = ex.Message;
-            }
-
-            return (carriers);
-        }
     }
 }

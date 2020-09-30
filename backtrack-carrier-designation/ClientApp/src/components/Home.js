@@ -26,7 +26,7 @@ export class Home extends Component {
 
     render() {
        
-        if (this.state.isLoaded) {
+        if (this.state.isLoaded && this.state.carriers.length) {
             return (
                 <Carriers {...this.state} />
             );
@@ -40,8 +40,7 @@ export class Home extends Component {
         }   
     }
 }
-function Carriers(props) {
-    
+function Carriers(props) {   
     return (
         <Row>   
             {props.carriers.map(carrier =>
@@ -51,12 +50,13 @@ function Carriers(props) {
                     className="m-2"
                     bg={cardColor(carrier.destination)}
                 >
+
                     <Card.Header>{carrier.carrierNumber}</Card.Header>
                     <Card.Header>{carrier.destination}</Card.Header>
                     <Card.Body>                     
                         <Card.Text>
-                            <p><b>style:</b> {carrier.styleDescription}</p>
-                            <p><b>color:</b> {carrier.colorDescription}</p>
+                            <p><b>Style:</b> {carrier.styleDescription}</p>
+                            <p><b>Color:</b> {carrier.colorDescription}</p>
                         </Card.Text>
                     </Card.Body>
                     <Card.Footer >Scanned at {new Date(carrier.timeScanned).toLocaleTimeString()}</Card.Footer>
@@ -69,10 +69,8 @@ function cardColor(destination) {
     switch (destination) {
         case 'Repair':
             return("danger");
-            break;
         case 'Clean':
             return ("warning");
-            break;
         default:
             return ("secondary");
     }
