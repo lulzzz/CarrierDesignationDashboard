@@ -6,7 +6,7 @@
   This program gathers data about each carrier from SQL, then determines whether the carrier should be sent to Repair, Cleaning, or Storage. 
   It then displays a React-Bootstrap Card (in Home.js) displaying instructions/information about each carrier so that workers can see what to do with each carrier.
   
-![image](https://user-images.githubusercontent.com/32852124/94740299-690a3900-0340-11eb-87a0-358796ba7429.png)
+![image](https://user-images.githubusercontent.com/32852124/94823346-c00c1e80-03d1-11eb-8474-2ff683512d53.png)
 
 # Application Structure
 ## Back-end:
