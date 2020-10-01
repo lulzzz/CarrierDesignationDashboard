@@ -24,8 +24,7 @@ export class Home extends Component {
         this.timer = setInterval(() => this.loadDataFromServer(), 5000);
     }
 
-    render() {
-       
+    render() {       
         if (this.state.isLoaded && this.state.carriers.length) {
             return (
                 <Carriers {...this.state} />
@@ -50,11 +49,13 @@ function Carriers(props) {
                     className="m-2"
                     bg={cardColor(carrier.destination)}
                 >
-
                     <Card.Header>{carrier.carrierNumber}</Card.Header>
                     <Card.Header>{carrier.destination}</Card.Header>
                     <Card.Body>                     
-                        <Card.Text>
+                        <Card.Text>                                                    
+                            <p><b>Top Rounds:</b> {carrier.topCount}/{carrier.topLimit} </p>
+                            <p><b>Bottom Rounds:</b> {carrier.bottomCount}/{carrier.bottomLimit} </p>
+                            <hr />
                             <p><b>Style:</b> {carrier.styleDescription}</p>
                             <p><b>Color:</b> {carrier.colorDescription}</p>
                         </Card.Text>

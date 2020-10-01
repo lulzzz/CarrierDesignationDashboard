@@ -10,7 +10,7 @@ namespace backtrack_carrier_designation.DataAccess
 {
     public class DB
     {
-        private static string DECOSQL = "Data Source=decosql;Persist Security Info=True;";
+        private static string DECOSQL = "Data Source=decosql;Persist Security Info=True;User ID=PartHistoryUser;Password=PartHistoryUser";
 
         public static List<CarrierModel> GetCarriers()
         {
