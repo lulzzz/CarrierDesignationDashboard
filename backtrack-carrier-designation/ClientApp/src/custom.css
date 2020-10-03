@@ -1,6 +1,8 @@
 
 body {
-    background-color: black;
+    background-color: #202020;
+    /*background-image: linear-gradient( black, gray);*/
+
 }
 
 .container {
@@ -9,7 +11,17 @@ body {
 }
 
 .card-header {
-    font-size: 48px;
-    text-align: center;
+    font-size: 36px;
+    text-align: right;
     font-weight: 800;
+}
+
+.root {
+    align-content: center;
+}
+.rightAlign {
+    text-align: right;
+}
+h3 {
+    display: inline;
 }

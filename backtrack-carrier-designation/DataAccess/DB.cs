@@ -16,7 +16,7 @@ namespace backtrack_carrier_designation.DataAccess
         {
             List<CarrierModel> carriers = new List<CarrierModel>();
             string _err = string.Empty;
-            string sql = "SELECT [ptrfid],[ptdatetime] FROM [ptMagnaGA].[dbo].[ptPaintReads] where [ptstation] = 'DoorSeven1' and ptdatetime >= dateadd(minute, -120, getdate()) order by ptdatetime desc";
+            string sql = "SELECT [ptrfid],[ptdatetime] FROM [ptMagnaGA].[dbo].[ptPaintReads] where [ptstation] = 'DoorSeven1' and ptdatetime >= dateadd(minute, -180, getdate()) order by ptdatetime desc";
 
             try
             {
@@ -83,8 +83,9 @@ namespace backtrack_carrier_designation.DataAccess
                                 carrier.ColorDescription = reader.GetString(reader.GetOrdinal("Color"));
                                 carrier.BottomCount = reader.GetInt32(reader.GetOrdinal("BottomCount"));
                                 carrier.TopCount = reader.GetInt32(reader.GetOrdinal("TopCount"));
-                                carrier.TopLimit = reader.GetInt32(reader.GetOrdinal("TopLimit"));
-                                carrier.RepairsNeeded = reader.GetInt32(reader.GetOrdinal("RepairsNeeded"));
+                                carrier.TopLimit = reader.GetInt32(reader.GetOrdinal("TopLimit"));                               
+                                if (!reader.IsDBNull(reader.GetString(reader.GetOrdinal("RepairReason"))))
+                                { carrier.RepairReason = reader.GetString(reader.GetOrdinal("RepairReason")); }
                             }
                         }
 

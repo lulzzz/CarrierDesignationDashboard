@@ -13,13 +13,13 @@ namespace backtrack_carrier_designation.Controllers
     public class CarrierDesignationController : ControllerBase
     {
         [HttpGet()] //api/CarrierDesignation
-        public IActionResult GetDetailsAsync()
+        public IActionResult GetDetails()
         {
             List<CarrierModel> carriers = new List<CarrierModel>();
             carriers = DataAccess.DB.GetCarriers();
             foreach (var carrier in carriers)
             {
-                if (carrier.RepairsNeeded > 0)
+                if (carrier.RepairReason != null)
                 {
                     carrier.Destination = "Repair";
                     carrier.TopDestination = "Repair";
