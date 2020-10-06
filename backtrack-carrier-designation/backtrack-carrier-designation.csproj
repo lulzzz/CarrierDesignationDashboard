@@ -8,6 +8,7 @@
     <SpaRoot>ClientApp\</SpaRoot>
     <DefaultItemExcludes>$(DefaultItemExcludes);$(SpaRoot)node_modules\**</DefaultItemExcludes>
     <RootNamespace>backtrack_carrier_designation</RootNamespace>
+    <UserSecretsId>d00a5c14-6f8a-4c8c-bf26-1cd4e6c93829</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>

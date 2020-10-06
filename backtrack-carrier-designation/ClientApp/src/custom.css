@@ -1,26 +1,31 @@
 
 body {
     background-color: #202020;
-    /*background-image: linear-gradient( black, gray);*/
-
+    /*background-image: linear-gradient( black, #202020);*/
 }
 
 .container {
-    margin: 10px;
-    max-width: 99%;
+    max-width: 100%;
+    padding: 2rem;
 }
-
+.row {   
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 .card-header {
     font-size: 36px;
     text-align: right;
     font-weight: 800;
+    padding-top: 0rem;
+    padding-bottom: 0rem;
 }
-
-.root {
-    align-content: center;
+.card-subtitle {
+    color: #202020;
 }
-.rightAlign {
-    text-align: right;
+.card-header {
+    padding-top: 0rem;
+    padding-bottom: 0rem;
 }
 h3 {
     display: inline;

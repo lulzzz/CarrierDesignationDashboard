@@ -10,14 +10,12 @@ namespace backtrack_carrier_designation.DataAccess
 {
     public class DB
     {
-        private static string DECOSQL = "Data Source=decosql;Persist Security Info=True;User ID=PartHistoryUser;Password=PartHistoryUser";
-
+        private static string DECOSQL = DecoSQL.DECOSQL;
         public static List<CarrierModel> GetCarriers()
         {
             List<CarrierModel> carriers = new List<CarrierModel>();
-            string _err = string.Empty;
-            string sql = "SELECT [ptrfid],[ptdatetime] FROM [ptMagnaGA].[dbo].[ptPaintReads] where [ptstation] = 'DoorSeven1' and ptdatetime >= dateadd(minute, -180, getdate()) order by ptdatetime desc";
-
+            int count = 0;
+            string sql = "SELECT [ptrfid],[ptdatetime] FROM [ptMagnaGA].[dbo].[ptPaintReads] where [ptstation] = 'DoorSeven1' and ptdatetime >= dateadd(minute, -120, getdate()) order by ptdatetime desc";
             try
             {
                 using (SqlConnection conn = new SqlConnection(DECOSQL))
@@ -40,6 +38,7 @@ namespace backtrack_carrier_designation.DataAccess
                                     carrier.RFID = rfid;
                                     carrier.TimeScanned = reader.GetDateTime(reader.GetOrdinal("ptdatetime"));
                                     carriers.Add(carrier);
+                                    count++;
                                 }
                             }
                         }
@@ -51,7 +50,7 @@ namespace backtrack_carrier_designation.DataAccess
             }
             catch (Exception ex)
             {
-                _err = ex.Message;
+                string _err = ex.Message;
             }
 
             return (carriers);

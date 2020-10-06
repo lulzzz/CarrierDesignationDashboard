@@ -18,7 +18,7 @@ namespace backtrack_carrier_designation.Models
         public int TopLimit { get; set; }
         public int BottomCount { get; set; } 
         public int BottomLimit { get; set; } = 300; //currently all carrier bottoms get cleaned every 300 rounds, regardless of style
-        public string RepairReason { get; set; }
+        public string RepairReason { get; set; } 
         public DateTime TimeScanned { get; set; }
 
     }

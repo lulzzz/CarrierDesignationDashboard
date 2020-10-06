@@ -1,0 +1,27 @@
+﻿
+html {
+  font-size: 14px;
+}
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+header {
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-top: 0rem;
+    padding-bottom: 0rem;
+}
+h1 {
+    padding-bottom: 0px;
+    padding-top: 1rem;
+    color: silver;
+}
+.navbar {
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-top: 0rem;
+    padding-bottom: 0rem;
+    border-bottom: solid black;
+}
