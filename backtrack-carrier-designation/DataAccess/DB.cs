@@ -15,7 +15,7 @@ namespace backtrack_carrier_designation.DataAccess
         {
             List<CarrierModel> carriers = new List<CarrierModel>();
             int count = 0;
-            string sql = "SELECT [ptrfid],[ptdatetime] FROM [ptMagnaGA].[dbo].[ptPaintReads] where [ptstation] = 'DoorSeven1' and ptdatetime >= dateadd(minute, -120, getdate()) order by ptdatetime desc";
+            string sql = "SELECT [ptrfid],[ptdatetime] FROM [ptMagnaGA].[dbo].[ptPaintReads] where [ptstation] = 'DoorSeven1' and ptdatetime >= dateadd(minute, -60, getdate()) order by ptdatetime desc";
             try
             {
                 using (SqlConnection conn = new SqlConnection(DECOSQL))
